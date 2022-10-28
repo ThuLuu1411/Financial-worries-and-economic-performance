@@ -35,8 +35,6 @@ path = "/Users/vophuoctri/OneDrive/quaypha/data/"
 os.chdir(path)
 
 
-# al = [RandomForestRegressor(random_state=48),
-#           XGBRegressor(random_state=0)]
 al=[MLPRegressor(hidden_layer_sizes=(300,),
                       solver = "adam",
                       activation = "relu",
@@ -46,7 +44,7 @@ al=[MLPRegressor(hidden_layer_sizes=(300,),
                       max_iter=7000,
                       early_stopping = False,
                       random_state=42)]
-al_name = ["RandomForest_shapley2.csv"]#, "XGBoost_shapley2.csv", "MLP Neural Network_shapley2.csv"]
+al_name = ["RandomForest_shapley2.csv", "XGBoost_shapley2.csv", "MLP Neural Network_shapley2.csv"]
 tree_base = ["RandomForest_shapley2.csv", "XGBoost_shapley2.csv"]
 
 
@@ -149,8 +147,6 @@ class Algorithm():
     def mrse_out(self):
         return mean_squared_error(self.split_data()[3], self.predict())
 
-# for i in al:
-#     print(Algorithm(path, i).accuracy())
 
 class SHAP(Algorithm):
     def __init__(self, path, algorithm, algorithm_name, random_state, variable):
@@ -173,12 +169,6 @@ class SHAP(Algorithm):
         worried = self.X[[x for x in self.X.columns if ('Worried about' in x) and (('richest' in x) or ('poorest' in x) or (',' not in x))]]
         shap.summary_plot(shap_df[worried.columns.tolist()].values, worried, plot_type='violin')
         return shap_df
-
-# l_random = []
-# for i in range(100):
-#     s = SHAP(path, al[0], 'MLP_shap2609.csv', random_state=i)
-#     l_random.append([i, s.accuracy(), s.meaning()])
-# random_df = pd.DataFrame(l_random)
    
 worries_vars = [
                     'Worried about not having enough money for monthly expenses or bills: worried (% age 15+)',
