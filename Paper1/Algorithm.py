@@ -3,7 +3,7 @@
 """
 Created on Fri Aug 12 15:34:41 2022
 
-@author: vophuoctri
+@author: thuluu
 """
 
 import numpy as np
@@ -203,50 +203,6 @@ for i in worries_vars:
     s = SHAP(path, al[0], 'MLP_shap2609.csv', random_state=55, variable = i)
     worries_models.append(s.shap_df())
     worries_ls.append(i)
-    # worries_finance.append(s.meaning())
-    # worries_models.append(s.fit().predict(s.X))
-    
-    
-    
-# shap.initjs()
-# shap.plots.force(5.4, shap_values=worries_models[0].loc['Lebanon'].values, features=np.round(worries_finance[0].loc['Lebanon'].values,1), feature_names=worries_finance[0].columns)
-
-# choice = 0
-# len_ls = 0
-# for j in range(10):
-#     i=  MLPRegressor(hidden_layer_sizes=(100,),
-#                         solver = "adam",
-#                         activation = "relu",
-#                         learning_rate_init = 0.001,
-#                         tol=1e-4,
-#                         max_iter=7000,
-#                         early_stopping = False,
-#                         random_state=j)
-    
-#     al = SHAP(path, i, "RandomForest")
-#     print(j, "========>", al.accuracy())
-#     fi = pd.DataFrame(data=al.fit().feature_importances_, columns=["value"], index=al.X.columns)
-#     fi = fi.sort_values("value", ascending=False).reset_index().head(20)
-#     ls = list(set(fi["index"].tolist()) & set(al.finance.worry.indicator_name))
-#     if len(ls)>len_ls:
-#         choice=j
-#         len_ls = len(ls)
-
-# print(choice)
-# print(len_ls)
-
-# choice = 0
-# len_ls = 0
-
-# for i in range(100):
-#     al = SHAP(path, RandomForestRegressor(random_state=i), "MLP")
-#     al_df = al.shap_df()
-#     # al_df.to_csv(j)
-#     al_df = np.abs(al_df).mean().sort_values(ascending=False).head(20)
-#     ls = list(set(al_df.index.tolist()) & set(al.finance.worry.indicator_name))
-#     if len(ls)>len_ls:
-#         choice = i
-#         len_ls = len(ls)
     
 
     
